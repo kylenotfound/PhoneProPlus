@@ -13,7 +13,7 @@ class User extends Authenticatable {
 
     public $table = 'users';
 
-    protected $fillable = ['external_id', 'username', 'name', 'email', 'password'];
+    protected $fillable = ['external_id', 'username', 'name', 'email', 'password', 'avatar', 'profile_id'];
     protected $hidden = ['password'];
     protected $casts = ['email_verified_at' => 'datetime'];
 
@@ -21,6 +21,10 @@ class User extends Authenticatable {
 
     public function records() {
       $this->hasMany(Record::class);
+    }
+
+    public function profile() {
+      return $this->hasOne(UserProfile::class, 'user_id');
     }
 
     public function getId() {
@@ -33,5 +37,30 @@ class User extends Authenticatable {
 
     public function getUsername() {
       return $this->username;
+    }
+
+    public function getEmail() {
+      return $this->email;
+    }
+
+    public function getAvatar() {
+      if ($this->avatar == null) {
+        $this->generateAvatar();
+      }
+      return $this->avatar;
+    }
+
+    public function generateAvatar() {
+      $dicebear = "https://avatars.dicebear.com/api/identicon/" . $this->getUsername() . ".svg";
+      $this->avatar = $dicebear;
+      $this->save();
+    }
+
+    public function generateProfile() {
+      $profile = UserProfile::create([
+        'user_id' => $this->getId()
+      ]);
+      $this->profile_id = $profile->id;
+      $this->save();
     }
 }

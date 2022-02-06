@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
+Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogleProvider']);
+Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleProviderCallback']);
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+  Route::get('/profile/{user}', [App\Http\Controllers\UserProfileController::class, 'index'])->name('user.profile');
+  Route::post('/profile/update/{user}', [App\Http\Controllers\UserProfileController::class, 'update'])->name('profile.update');
 
   //Records
   Route::get('/record/view/{record}', [App\Http\Controllers\RecordController::class, 'index'])->name('record.view');
