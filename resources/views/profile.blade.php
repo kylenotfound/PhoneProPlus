@@ -54,7 +54,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-control" value="" placeholder="Change your password?" name="password">
+                <input type="password" class="form-control" placeholder="Change your password?" name="password">
               </div>
             @endif
           </div>
