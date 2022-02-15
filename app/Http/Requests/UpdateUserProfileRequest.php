@@ -14,11 +14,11 @@ class UpdateUserProfileRequest extends FormRequest {
   public function rules() {
     return [
       'username' => [
-        Rule::unique('users', 'username')->ignore($user->getUsername()),
+        Rule::unique('users', 'username')->ignore(auth()->user()->getUsername()),
         'max:16|min:3'
       ],
       'email' => [
-        Rule::unique('users', 'email')->ignore($user->getEmail())
+        Rule::unique('users', 'email')->ignore(auth()->user()->getEmail())
       ],
       'password' => 'string|min:8|',
       'name' => 'nullable|string|min:2|max:32'

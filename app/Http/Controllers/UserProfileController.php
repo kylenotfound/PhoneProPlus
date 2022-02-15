@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Requests\UpdateUserProfileRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserProfile;
@@ -21,7 +21,7 @@ class UserProfileController extends Controller {
     $user->update([
       'name' => $request->input('name') ?? $user->getName(),
       'username' => $request->input('username') ?? $user->getUsername(),
-      'email' => $request->input('username') ?? $user->getEmail(),
+      'email' => $request->input('email') ?? $user->getEmail(),
       'password' => Hash::make($request->input('password'))
     ]);
     return back()->with(['success' => 'Profile Updated!']);
