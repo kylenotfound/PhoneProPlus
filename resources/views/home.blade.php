@@ -11,10 +11,11 @@
   </div>
 @endif
 
-<div class="container">
+<div class="container p-4">
   <div class="row justify-content-center">
     <div class="col-md-12">
       <h2 class="d-inline mb-2">Your PhoneProPlus Records</h2>
+      <hr width="30%">
       <div class="card">
         <div class="card-header">
           <span class="d-inline">Welcome, {{ auth()->user()->getUsername() }}</span>

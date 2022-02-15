@@ -13,7 +13,7 @@
   </div>
 @endif
 
-<div class="container">
+<div class="container p-4">
   <div class="row justify-content-center">
     <div class="col-md-6 mb-2">
       <h1 class="text-center">Create a new Record</h1>

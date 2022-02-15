@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
 
+/* navbar styling */
 #navbar > ul > li.nav-item.active > a {
     opacity: 0.6;
     transition: 0.3s;
@@ -9,9 +10,6 @@
     opacity: 1.0;
 }
 
-/**
-    Navbar item effects
-**/
 #navbar > ul > li.nav-item > a {
     opacity: 0.6;
     transition: 0.3s;

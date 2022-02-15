@@ -36,3 +36,12 @@ If on windows, you may need to run
 >php artisan serve
 
 In your web browser of choice, go to: http://localhost:8000 and you should see the main landing page.
+
+## TODO 
+- Search Filters for main table
+- Search Filters for individual profile tables
+- Save records to profile
+- About Page
+- More interavtive animations and buttons
+- Maps Integration
+- Footer

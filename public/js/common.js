@@ -7,3 +7,16 @@
     var charactersLeft = countFrom - textInput;
     document.getElementById('charsLeft').innerHTML = "Characters left: " + charactersLeft;
   }
+
+//On page load open table
+$("body").on('show.bs.collapse', function(e) {
+  if(e.target.id == "recordsCollapse") {
+    document.getElementById("recordsButton").innerHTML = ("Collapse Records");
+  }
+});
+
+$("body").on('hide.bs.collapse', function(e) {
+    if(e.target.id == "recordsCollapse") {
+      document.getElementById("recordsButton").innerHTML = ("Expand Records");
+    }
+});

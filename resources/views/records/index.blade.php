@@ -21,7 +21,7 @@
 @endif
 
 @section('content')
-  <div class="container">
+  <div class="container p-4">
     <div class="row justify-content-center">
       <h1 class="mb-2 text-center">Record #{{ $record->getId() }}</h1>
       <div class="col-md-8 mb-2">
