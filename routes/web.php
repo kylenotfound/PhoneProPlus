@@ -17,6 +17,7 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogleProvider']);
 Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleProviderCallback']);
+Route::any('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 Auth::routes();
 
