@@ -24,15 +24,15 @@ class SearchController extends Controller {
     }
 
     if (isset($filters['state']) && $filters['state'] != '') {
-      $records->where('records.city', 'LIKE', "%{$filters['state']}%");  
+      $records->where('records.state', 'LIKE', "%{$filters['state']}%");  
     }
 
     if (isset($filters['zipcode']) && $filters['zipcode'] != '') {
-      $records->where('records.city', 'LIKE', "%{$filters['zipcode']}%");  
+      $records->where('records.zipcode', 'LIKE', "%{$filters['zipcode']}%");  
     }
 
     if (isset($filters['building_type_id']) && $filters['building_type_id'] != '') {
-      $records->where('records.city', 'LIKE', "%{$filters['building_type_id']}%");  
+      $records->where('records.building_type_id', 'LIKE', "%{$filters['building_type_id']}%");  
     }
 
     /**
