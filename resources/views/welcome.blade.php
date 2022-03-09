@@ -96,6 +96,9 @@
                   <th>Submitting User</th>
                   <th>Building Type</th>
                   <th>Last Updated</th>
+                  @auth
+                    <th>Save</th>  
+                  @endauth
                 </tr>
               </thead>
               <tbody>
@@ -108,6 +111,25 @@
                     <td>{{ $record->getSubmittedName() }}</td>
                     <td>{{ $record->getBuildingTypeName() }}</td>
                     <td>{{ $record->getFormattedUpdatedAt() }}</td>
+                    <td>
+                      @auth
+                        @if ($record->isSaved())
+                          <form action="{{ route('unsave') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                            <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Unsave</button>
+                          </form>  
+                        @else
+                          <form action="{{ route('save') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                            <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Save</button>
+                          </form>   
+                        @endif  
+                      @endauth
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

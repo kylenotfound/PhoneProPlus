@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/record/store', [App\Http\Controllers\RecordController::class, 'store'])->name('record.store');
   Route::post('/record/delete/{record}', [App\Http\Controllers\RecordController::class, 'delete'])->name('record.delete');
   Route::post('/record/edit/{record}', [App\Http\Controllers\RecordController::class, 'edit'])->name('record.edit');
+
+  Route::post('/save', [App\Http\Controllers\SaveController::class, 'save'])->name('save');
+  Route::post('/unsave', [App\Http\Controllers\SaveController::class, 'unsave'])->name('unsave');
 });
 
 

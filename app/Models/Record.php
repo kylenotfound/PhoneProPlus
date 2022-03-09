@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Save;
 
 use Carbon\Carbon;
 
@@ -86,5 +87,17 @@ class Record extends Model {
 
     public function getFormattedUpdatedAt() {
       return Carbon::parse($this->updated_at)->format('m-d-Y');
+    }
+
+    //Check if record has been saved to auth()->user() profile
+    public function isSaved() : bool {
+      $save = Save::where('record_id', $this->getId())
+        ->where('user_id', auth()->id())->exists();
+      
+      if ($save == null) {
+        return false;
+      } 
+
+      return true;
     }
 }

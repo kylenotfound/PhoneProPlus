@@ -27,6 +27,10 @@ class User extends Authenticatable {
       return $this->hasOne(UserProfile::class, 'user_id');
     }
 
+    public function saves() {
+      return $this->hasMany(Save::class);
+    }
+
     public function getId() {
       return $this->id;
     }

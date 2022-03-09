@@ -18,7 +18,6 @@
       <hr width="30%">
       <div class="card">
         <div class="card-header">
-          <span class="d-inline">Welcome, {{ auth()->user()->getUsername() }}</span>
           <a class="d-inline btn btn-lg btn-outline-dark float-right" href="{{ route('record.create') }}">New Record</a>
         </div>
         @if(count($records) > 0)
@@ -59,6 +58,67 @@
           </div>
         @endif
       </div>
+      <hr />
+      <div class="col-md-12">
+        <h2 class="d-inline mb-2">Your Saved Records</h2>
+        <hr width="30%">
+        <div class="card">
+          @if(count($saves) > 0)
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Record Id</th>
+                    <th>Location Name</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Building Type</th>
+                    <th>Visibility Type</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                    <th>Save</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($saves as $save)
+                    <tr>
+                      <td>{{ $save->record->getId() }}</td>
+                      <td>{{ $save->record->getBuildingName() }}</td>
+                      <td>{{ $save->record->getFormattedAddress() }}</td>
+                      <td>{{ $save->record->getPhoneNumber() }}</td>
+                      <td>{{ $save->record->getBuildingTypeName() }}</td>
+                      <td>{{ $save->record->user->getName() }}</td>
+                      <td>{{ $save->record->getFormattedCreatedAt() }}</td>
+                      <td>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ route('record.view', ['record' => $record]) }}">View</a>
+                      </td>
+                      <td>
+                        @auth
+                          @if ($save->record->isSaved())
+                            <form action="{{ route('unsave') }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                              <input type="hidden" name="record_id" value="{{ $save->record->getId() }}"/>
+                              <button class="btn btn-sm btn-outline-dark" type="submit">Unsave</button>
+                            </form>  
+                          @else
+                            <form action="{{ route('save') }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                              <input type="hidden" name="record_id" value="{{ $save->record->getId() }}"/>
+                              <button class="btn btn-sm btn-outline-dark" type="submit">Save</button>
+                            </form>   
+                          @endif  
+                        @endauth
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              {{$records->withQueryString()->links()}}
+            </div>
+          @endif
+        </div>
     </div>
     @if (count($records) <= 0)
       <div class="text-muted">

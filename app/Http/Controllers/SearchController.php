@@ -31,6 +31,10 @@ class SearchController extends Controller {
       $records->where('records.zipcode', 'LIKE', "%{$filters['zipcode']}%");  
     }
 
+    if (isset($filters['phone_number']) && $filters['phone_number'] != '') {
+      $records->where('records.phone_number', 'LIKE', "%{$filters['phone_number']}%");  
+    }
+
     if (isset($filters['building_type_id']) && $filters['building_type_id'] != '') {
       $records->where('records.building_type_id', 'LIKE', "%{$filters['building_type_id']}%");  
     }
