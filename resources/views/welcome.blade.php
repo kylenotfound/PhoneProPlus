@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
+
+
 @section('content')
+
+@if(session()->has('success'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{session()->get('success')}}
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+@endif
+
 <div class="container p-4">
     <div class="col-12 mb-2">
       <div id="postcontent">
@@ -97,7 +109,7 @@
                   <th>Building Type</th>
                   <th>Last Updated</th>
                   @auth
-                    <th>Save</th>  
+                    <th>Save</th>
                   @endauth
                 </tr>
               </thead>
@@ -111,25 +123,27 @@
                     <td>{{ $record->getSubmittedName() }}</td>
                     <td>{{ $record->getBuildingTypeName() }}</td>
                     <td>{{ $record->getFormattedUpdatedAt() }}</td>
-                    <td>
-                      @auth
-                        @if ($record->isSaved())
-                          <form action="{{ route('unsave') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
-                            <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
-                            <button class="btn btn-sm btn-outline-dark" type="submit">Unsave</button>
-                          </form>  
-                        @else
-                          <form action="{{ route('save') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
-                            <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
-                            <button class="btn btn-sm btn-outline-dark" type="submit">Save</button>
-                          </form>   
-                        @endif  
-                      @endauth
-                    </td>
+                    @auth
+                      <td>
+                        @if ($record->user != auth()->user())
+                          @if ($record->isSaved())
+                            <form action="{{ route('unsave') }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                              <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
+                              <button class="btn btn-sm btn-outline-dark" type="submit">Unsave</button>
+                            </form>
+                          @else
+                            <form action="{{ route('save') }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
+                              <input type="hidden" name="record_id" value="{{ $record->getId() }}"/>
+                              <button class="btn btn-sm btn-outline-dark" type="submit">Save</button>
+                            </form>
+                          @endif
+                        @endif
+                      </td>
+                    @endauth
                   </tr>
                 @endforeach
               </tbody>
@@ -153,7 +167,7 @@
                   </ul>
                 </nav>
               @endif
-              <span class="text-muted text-small mr-sm-1"> Displaying {{ $records->firstItem() }} - {{ $records->lastItem() }} of {{ $records->total() }} records </span>  
+              <span class="text-muted text-small mr-sm-1"> Displaying {{ $records->firstItem() }} - {{ $records->lastItem() }} of {{ $records->total() }} records </span>
             </div>
           </div>
         @else

@@ -60,10 +60,10 @@
       </div>
       <hr />
       <div class="col-md-12">
-        <h2 class="d-inline mb-2">Your Saved Records</h2>
-        <hr width="30%">
-        <div class="card">
-          @if(count($saves) > 0)
+        @if(count($saves) > 0)
+          <h2 class="d-inline mb-2">Your Saved Records</h2>
+          <hr width="30%">
+          <div class="card">
             <div class="card-body">
               <table class="table table-bordered">
                 <thead>
@@ -73,7 +73,7 @@
                     <th>Address</th>
                     <th>Phone Number</th>
                     <th>Building Type</th>
-                    <th>Visibility Type</th>
+                    <th>Created By</th>
                     <th>Created At</th>
                     <th>Action</th>
                     <th>Save</th>
@@ -87,10 +87,10 @@
                       <td>{{ $save->record->getFormattedAddress() }}</td>
                       <td>{{ $save->record->getPhoneNumber() }}</td>
                       <td>{{ $save->record->getBuildingTypeName() }}</td>
-                      <td>{{ $save->record->user->getName() }}</td>
+                      <td>{{ $save->user->getName() }}</td>
                       <td>{{ $save->record->getFormattedCreatedAt() }}</td>
                       <td>
-                        <a class="btn btn-sm btn-outline-dark" href="{{ route('record.view', ['record' => $record]) }}">View</a>
+                        <a class="btn btn-sm btn-outline-dark" href="{{ route('record.view', ['record' => $save->record]) }}">View</a>
                       </td>
                       <td>
                         @auth
@@ -100,15 +100,15 @@
                               <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
                               <input type="hidden" name="record_id" value="{{ $save->record->getId() }}"/>
                               <button class="btn btn-sm btn-outline-dark" type="submit">Unsave</button>
-                            </form>  
+                            </form>
                           @else
                             <form action="{{ route('save') }}" method="POST">
                               @csrf
                               <input type="hidden" name="user_id" value="{{ auth()->id() }}" />
                               <input type="hidden" name="record_id" value="{{ $save->record->getId() }}"/>
                               <button class="btn btn-sm btn-outline-dark" type="submit">Save</button>
-                            </form>   
-                          @endif  
+                            </form>
+                          @endif
                         @endauth
                       </td>
                     </tr>
@@ -117,8 +117,9 @@
               </table>
               {{$records->withQueryString()->links()}}
             </div>
-          @endif
-        </div>
+          </div>
+        @endif
+      </div>
     </div>
     @if (count($records) <= 0)
       <div class="text-muted">
