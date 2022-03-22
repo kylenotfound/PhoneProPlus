@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
 @if(session()->has('success'))
@@ -84,6 +82,7 @@
                           </div>
                           <div class="modal-footer">
                             <input type="hidden" name="page-number" value="{{ $records->currentPage() }}">
+                            <input type="hidden" name="total-page-numbers" value="{{ $records->lastPage() }}">
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-outline-success">Search</button>
                           </div>
@@ -120,7 +119,7 @@
                     <td>{{ $record->getBuildingName() }}</td>
                     <td><a href="https://www.google.com/search?q={{$record->getFormattedAddress()}}">{{ $record->getFormattedAddress() }}</a></td>
                     <td>{{ $record->getPhoneNumber() }}</td>
-                    <td>{{ $record->getSubmittedName() }}</td>
+                    <td><a href="{{ route('user.profile', $record->user) }}">{{ $record->getSubmittedName() }}</a></td>
                     <td>{{ $record->getBuildingTypeName() }}</td>
                     <td>{{ $record->getFormattedUpdatedAt() }}</td>
                     @auth
@@ -154,20 +153,30 @@
               @if($records->total())
                 <nav id="items-pagination" class="mt-4 mb-3">
                   <ul class="pagination justify-content-left mb-0">
-                    <li class="page-item" id="page-item-prev">
-                      @if(!$records->onFirstPage())
+                    @if (!$records->onFirstPage())
+                      <li class="page-item p-1" id="page-item-next">
+                        <button class="page-link prev" type="submit" form="main-form" name="first-page-button" value="first">First Page</button>
+                      </li>
+                    @endif
+                    @if(!$records->onFirstPage())
+                      <li class="page-item p-1" id="page-item-prev">
                         <button class="page-link prev" type="submit" form="main-form" name="back-page-button" value="backward"><</button>
-                      @endif
-                    </li>
-                    <li class="page-item" id="page-item-next">
-                      @if($records->currentPage() != $records->lastPage())
+                      </li>
+                    @endif
+                    @if($records->currentPage() != $records->lastPage())
+                      <li class="page-item p-1" id="page-item-next">
                         <button class="page-link next" type="submit" form="main-form" name="forward-page-button" value="forward">></button>
-                      @endif
-                    </li>
+                      </li>
+                      <li class="page-item p-1" id="page-item-next">
+                        <button class="page-link prev" type="submit" form="main-form" name="last-page-button" value="last">Last Page</button>  
+                      </li>
+                    @endif
                   </ul>
                 </nav>
               @endif
               <span class="text-muted text-small mr-sm-1"> Displaying {{ $records->firstItem() }} - {{ $records->lastItem() }} of {{ $records->total() }} records </span>
+              <br>
+              <span class="text-muted text-small mr-sm-1"> For more advanced filtering, check out the "Search Filters" button at the top of the page.</span>
             </div>
           </div>
         @else

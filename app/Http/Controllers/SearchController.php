@@ -42,6 +42,16 @@ class SearchController extends Controller {
     /**
      * Handle Pagination Buttons
      */
+
+    if ($request->filled('first-page-button')) {
+      $filteredRecords = $records->paginate(10, ['*'], 'page', 1);
+    }
+    
+    if ($request->filled('last-page-button')) {
+      $pageNumber = $request->input('total-page-numbers');
+      $filteredRecords = $records->paginate(10, ['*'], 'page', $pageNumber);
+    }
+     
     if ($request->filled('forward-page-button')) {
       $pageNumber = $request->input('page-number');
       $filteredRecords = $records->paginate(10, ['*'], 'page', $pageNumber + 1);
@@ -53,8 +63,10 @@ class SearchController extends Controller {
       $filteredRecords = $records->paginate(10, ['*'], 'page', $pageNumber - 1);
     }
 
+    $returnRecords = $filteredRecords ?? $records->paginate(10);
+
     return view('welcome', [
-      'records' => $filteredRecords ?? $records->paginate(10),
+      'records' => $returnRecords,
     ]);
 
   }  

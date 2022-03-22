@@ -15,7 +15,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form method="POST" action="{{ route('record.delete', ['record' => $record]) }}">
           @csrf
-          <button type="submit" class="btn btn-primary">Delete</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
     </div>

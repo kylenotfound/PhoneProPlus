@@ -14,12 +14,13 @@
 <div class="container p-4">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <h2 class="d-inline mb-2">Your PhoneProPlus Records</h2>
-      <hr width="30%">
-      <div class="card">
-        <div class="card-header">
-          <a class="d-inline btn btn-lg btn-outline-dark float-right" href="{{ route('record.create') }}">New Record</a>
-        </div>
+      <div class="py-2">
+        <h1 class="d-inline mb-2 py-2">Your PhoneProPlus Records</h1>
+        <a class="d-inline btn btn-lg btn-outline-dark float-right p-2 m-2" href="{{ route('record.create') }}">New Record</a>
+      </div>
+      <br />
+      <hr>
+      <div>
         @if(count($records) > 0)
           <div class="card-body">
             <table class="table table-bordered">
@@ -56,15 +57,16 @@
             </table>
             {{$records->withQueryString()->links()}}
           </div>
+          <hr />
         @endif
       </div>
-      <hr />
+      <br />
       <div class="col-md-12">
         @if(count($saves) > 0)
-          <h2 class="d-inline mb-2">Your Saved Records</h2>
-          <hr width="30%">
-          <div class="card">
-            <div class="card-body">
+          <h1 class="d-inline mb-2">Your Saved Records</h1>
+          <hr>
+          <div>
+            <div>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -87,7 +89,7 @@
                       <td>{{ $save->record->getFormattedAddress() }}</td>
                       <td>{{ $save->record->getPhoneNumber() }}</td>
                       <td>{{ $save->record->getBuildingTypeName() }}</td>
-                      <td>{{ $save->user->getName() }}</td>
+                      <td>{{ $save->record->user->getName() }}</td>
                       <td>{{ $save->record->getFormattedCreatedAt() }}</td>
                       <td>
                         <a class="btn btn-sm btn-outline-dark" href="{{ route('record.view', ['record' => $save->record]) }}">View</a>
@@ -115,7 +117,7 @@
                   @endforeach
                 </tbody>
               </table>
-              {{$records->withQueryString()->links()}}
+              {{ $saves->withQueryString()->links() }}
             </div>
           </div>
         @endif

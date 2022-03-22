@@ -49,6 +49,11 @@
               <span>Visibility Type: {{ $record->getVisibilityTypeName() }}</span>
             </div>
             <div class="col-sm-8">
+              <span>Submitting User: <a href="{{ route('user.profile', $record->user)}}">
+                {{ $record->user->getUserName() }}</a>
+              </span>
+            </div>
+            <div class="col-sm-8">
               <span>Notes: {{ $record->getNote() }}</span>
             </div>
           </div>

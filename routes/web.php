@@ -30,11 +30,16 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/record/view/{record}', [App\Http\Controllers\RecordController::class, 'index'])->name('record.view');
   Route::get('/record/create', [App\Http\Controllers\RecordController::class, 'create'])->name('record.create');
   Route::post('/record/store', [App\Http\Controllers\RecordController::class, 'store'])->name('record.store');
-  Route::post('/record/delete/{record}', [App\Http\Controllers\RecordController::class, 'delete'])->name('record.delete');
   Route::post('/record/edit/{record}', [App\Http\Controllers\RecordController::class, 'edit'])->name('record.edit');
+  
+  Route::post('/record/delete/{record}', [App\Http\Controllers\RecordController::class, 'delete'])->name('record.delete');
+  Route::post('/record/delete-all', [App\Http\Controllers\RecordController::class, 'deleteAll'])->name('record.delete.all');
+  Route::post('/record/delete-all-public', [App\Http\Controllers\RecordController::class, 'deleteAllPublic'])->name('record.delete.all.public');
+  Route::post('/record/delete-all-private', [App\Http\Controllers\RecordController::class, 'deleteAllPrivate'])->name('record.delete.all.private');
 
   Route::post('/save', [App\Http\Controllers\SaveController::class, 'save'])->name('save');
   Route::post('/unsave', [App\Http\Controllers\SaveController::class, 'unsave'])->name('unsave');
+  Route::post('/unsave-all', [App\Http\Controllers\SaveController::class, 'unsaveall'])->name('unsave.all');
 });
 
 

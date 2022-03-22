@@ -6,6 +6,7 @@ use App\Http\Requests\CreateRecordRequest;
 use Illuminate\Http\Request;
 
 use App\Models\BuildingType;
+use App\Models\VisibilityType;
 use App\Models\Record;
 use App\Rules\PhoneNumber;
 
@@ -55,5 +56,51 @@ class RecordController extends Controller {
   public function delete(Record $record) {
     $record->delete();
     return redirect('home')->with(['success' => 'Record Deleted!']);
+  }
+
+  public function deleteAll() {
+    $records = Record::where('user_id', auth()->id())->get();
+
+    if (count($records) === 0) {
+      return back()->withErrors(['errors' => 'No Records!']);
+    }
+
+    foreach ($records as $record) {
+      $record->delete();
+    }
+
+    return redirect()->route('home')->with(['success' => 'All of your records have been deleted!']);
+  }
+
+  public function deleteAllPublic() {
+    $records = Record::where('user_id', auth()->id())
+      ->where('is_private', '=', VisibilityType::PUBLIC_RECORD)
+      ->get();
+
+    if (count($records) === 0) {
+      return back()->withErrors(['errors' => 'No Records!']);
+    }
+
+    foreach($records as $record) {
+      $record->delete();
+    }  
+
+    return redirect()->route('home')->with(['success' => 'All of your PUBLIC records have been deleted!']);
+  }
+
+  public function deleteAllPrivate() {
+    $records = Record::where('user_id', auth()->id())
+      ->where('is_private', '=', VisibilityType::PRIVATE_RECORD)
+      ->get();
+
+    if (count($records) === 0) {
+      return back()->withErrors(['errorss' => 'No Records!']);
+    }  
+    
+    foreach($records as $record) {
+      $record->delete();
+    }  
+
+    return redirect()->route('home')->with(['success' => 'All of your PRIVATE records have been deleted!']);
   }
 }

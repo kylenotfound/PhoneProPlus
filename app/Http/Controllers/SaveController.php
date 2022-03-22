@@ -24,7 +24,6 @@ class SaveController extends Controller {
   }  
 
   public function unsave(Request $request) {
-    //dd($request->all());
     $save = Save::where('record_id', $request->input('record_id'))
       ->where('user_id', auth()->id())
       ->first();
@@ -35,6 +34,15 @@ class SaveController extends Controller {
 
     $save->delete();
     return back()->with(['success' => 'Record unsaved!']);
+  }
+
+  public function unsaveall(Request $request) {
+    $saves = Save::where('user_id', auth()->id())->get();
+    foreach($saves as $save) {
+      $save->delete();
+    }
+
+    return redirect()->route('home')->with(['success' => 'All of your saved records have been removed']);
   }
 
 }
