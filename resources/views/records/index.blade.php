@@ -26,12 +26,14 @@
       <h1 class="mb-2 text-center">Record #{{ $record->getId() }}</h1>
       <div class="col-md-8 mb-2">
         <div class="card">
-          <div class="card-header">
-            <div class="d-inline">
-              <a class="btn btn-lg btn btn-outline-danger m-2 float-right" data-toggle="modal" data-target="#deleteRecordModal">Delete Record</a>
-              <a class="btn btn-lg btn btn-outline-info m-2 float-right" data-toggle="modal" data-target="#editRecordModal">Edit Record</a>
+          @if (auth()->id() == $record->user->getId())
+            <div class="card-header">
+                <div class="d-inline">
+                <a class="btn btn-lg btn btn-outline-danger m-2 float-right" data-toggle="modal" data-target="#deleteRecordModal">Delete Record</a>
+                <a class="btn btn-lg btn btn-outline-info m-2 float-right" data-toggle="modal" data-target="#editRecordModal">Edit Record</a>
+                </div>
             </div>
-          </div>
+          @endif
           <div class="card-body">
             <div class="col-sm-8">
               <span>Location Name: {{ $record->getBuildingName() }}</span>

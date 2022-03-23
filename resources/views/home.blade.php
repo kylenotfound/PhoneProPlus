@@ -55,7 +55,7 @@
                 @endforeach
               </tbody>
             </table>
-            {{$records->withQueryString()->links()}}
+            {{ $records->withQueryString()->links() }}
           </div>
           <hr />
         @endif
@@ -89,7 +89,7 @@
                       <td>{{ $save->record->getFormattedAddress() }}</td>
                       <td>{{ $save->record->getPhoneNumber() }}</td>
                       <td>{{ $save->record->getBuildingTypeName() }}</td>
-                      <td>{{ $save->record->user->getName() }}</td>
+                      <td><a href="{{ route('user.profile', $save->record->user) }}">{{ $save->record->getSubmittedName() }}</a></td>
                       <td>{{ $save->record->getFormattedCreatedAt() }}</td>
                       <td>
                         <a class="btn btn-sm btn-outline-dark" href="{{ route('record.view', ['record' => $save->record]) }}">View</a>
