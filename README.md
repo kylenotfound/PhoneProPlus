@@ -11,8 +11,6 @@ Your schemea can be titled whatever you like, I named mine: "phone_book"
 ### Configure your .env
 > cp .env.example .env
 
-Create a new schema in MySQL Workbench or SQLPro. I named mine phone_book
-
 > Set your "DB_USERNAME", "DB_PASSWORD", "DB_DATABASE" values
 
 ### Now that your database is setup, run the following commands:
@@ -21,13 +19,13 @@ Create a new schema in MySQL Workbench or SQLPro. I named mine phone_book
 If on windows, you may need to run 
 >composer install --ignore-platform-reqs
 
+Then run:
+
 > npm install && npm run dev
 
 > php artisan migrate
 
 > php artisan db:seed
-
-> php artisan migrate
 
 > php artisan key:generate
 
@@ -38,10 +36,9 @@ If on windows, you may need to run
 In your web browser of choice, go to: http://localhost:8000 and you should see the main landing page.
 
 ## TODO 
-- Search Filters for main table
-- Search Filters for individual profile tables
-- Save records to profile
-- About Page
-- More interavtive animations and buttons
-- Maps Integration
-- Footer
+- [x] Search Filters for main table
+- [x] Save records to profile
+- [ ] About Page
+- [ ] More interactive animations and buttons
+- [ ] Footer
+- [ ] Demo Launch on Heroku
