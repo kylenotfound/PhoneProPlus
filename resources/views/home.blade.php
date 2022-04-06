@@ -123,9 +123,9 @@
         @endif
       </div>
     </div>
-    @if (count($records) <= 0)
+    @if (count($records) <= 0 && count($saves) <= 0)
       <div class="text-muted">
-        <span>No records to display</span>
+        <span>No records or saves to display</span>
       </div>
     @endif
   </div>
