@@ -8,6 +8,8 @@ use App\Models\Record;
 class RecordSeeder extends Seeder {
 
     public function run() {
-      Record::factory()->count(100)->create();
+      if (env('APP_ENV') != 'prod') {
+        Record::factory()->count(100)->create();
+      }
     }
 }
