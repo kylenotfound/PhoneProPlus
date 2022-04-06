@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Schema\Builder;
 
 class AppServiceProvider extends ServiceProvider {
     /**
