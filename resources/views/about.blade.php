@@ -4,7 +4,7 @@
 
   <section class="p-4 mb-2" style="max-width: 800px; margin: 0 auto;">
     @markdown
-      # Welcome to PhoneProPlus! 
+      # Welcome to PhoneProPlus!
 
       PhoneProPlus is a living online phone book where any user can create an account and post public records.
       Users can also post private records as a means to backup their contacts list in a safe place.
@@ -13,25 +13,25 @@
 
       ### Tech
 
-      PhoneProPlus is a web application written in PHP using the Laravel framework.
+      PhoneProPlus is a web application written in PHP using the [Laravel](https://laravel.com/) framework.
       Laravel is a popular MVC PHP framework. This application is written in version 8 of the framework.
       It users Laravel Blade, Bootstrap and Javascript on the front end.
       PHP on the backend and MYSQL for the database.
 
-      The randomized profile picture API used is Dicebear.
+      The randomized profile picture API used is [Dicebear](https://avatars.dicebear.com/).
 
-      The screencaps below are iframes provided by Carbon.
+      The screencaps below are iframes provided by [Carbon](https://carbon.now.sh/).
 
-      PhoneProPlus is hosted on Heroku.
+      PhoneProPlus is hosted on [Heroku](https://www.heroku.com/).
 
       ---
 
-      ## Web Programming @ Rowan University
+      ## Web Programming @ [Rowan University](https://www.rowan.edu/)
 
-      This application was created as my semester long programming project for Web Programming at 
+      This application was created as my semester long programming project for Web Programming at
       Rowan University. Rowan University's Web Programming course teaches the following technologies
 
-      - HTML / CSS 
+      - HTML / CSS
       - Javascript & Jquery
       - PHP & MYSQL
 
@@ -48,7 +48,7 @@
       sandbox="allow-scripts allow-same-origin">
     </iframe>
     @markdown
-      This javascript function is used in a couple of places to display to the user how many characters they are able 
+      This javascript function is used in a couple of places to display to the user how many characters they are able
       to type in a textarea after they begin typing. It is used in the create and edit record pages.
 
       # JQuery
@@ -70,9 +70,9 @@
       sandbox="allow-scripts allow-same-origin">
     </iframe>
     @markdown
-      This is an example Laravel Database Migration. This migration in particular creates the "records" table. 
-      Records are the meat and potatoes of the application. A user can have many records and a record belongs to one 
-      user. ( Check out the relationships section below ). There are three foreign keys on this table. 
+      This is an example Laravel Database Migration. This migration in particular creates the "records" table.
+      Records are the meat and potatoes of the application. A user can have many records and a record belongs to one
+      user. ( Check out the relationships section below ). There are three foreign keys on this table.
       - user_id ( The user who created the record )
       - building_type_id ( Is the records location a Company or Residance )
       - is_private ( Is the visibility type of the record Public or Private )
@@ -88,7 +88,7 @@
       This is an example Laravel Model. A model is what represents the database table through code.
       The Model has a table it represents, a $fillable which has the fillable fields and relationships and other methods.
 
-      For example: 
+      For example:
       - A record belongsTo a User.
       - A record hasOne VisibilityType.
       - A record hasOne BuildingType.
@@ -101,8 +101,8 @@
       sandbox="allow-scripts allow-same-origin">
     </iframe>
     @markdown
-      Here is a piece of the Records Controller. These are the functions that are called when a specific route is 
-      accessed by an authorzied user. 
+      Here is a piece of the Records Controller. These are the functions that are called when a specific route is
+      accessed by an authorzied user.
 
       ---
 

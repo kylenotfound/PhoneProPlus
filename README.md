@@ -34,11 +34,3 @@ Then run:
 >php artisan serve
 
 In your web browser of choice, go to: http://localhost:8000 and you should see the main landing page.
-
-## TODO 
-- [x] Search Filters for main table
-- [x] Save records to profile
-- [ ] About Page
-- [ ] More interactive animations and buttons
-- [ ] Footer
-- [ ] Demo Launch on Heroku
