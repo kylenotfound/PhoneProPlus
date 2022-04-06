@@ -28,6 +28,13 @@ class AddRecordsTable extends Migration {
     }
 
     public function down() {
+        
+        Schema::table('records', function(Builder $builder) {
+            $table->dropForeign('user_id');
+            $table->dropForeign('building_type_id');
+            $table->dropForeign('is_private');
+        });
+
         Schema::dropIfExists('records');
     }
 }
