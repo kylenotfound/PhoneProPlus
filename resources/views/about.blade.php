@@ -6,15 +6,14 @@
     @markdown
       # Welcome to PhoneProPlus!
 
-      PhoneProPlus is a living online phone book where any user can create an account and post public records.
+      PhoneProPlus is an online, living phone book where any user can create an account and post records to the site for anyone to see and reference.
       Users can also post private records as a means to backup their contacts list in a safe place.
-      Users can log in with their google account or create a native PhoneProPlus account to do this. PhoneProPlus
-      also allows for users to save other user's created records to their profile to reference later as well.
+      PhoneProPlus also allows for users to save other user's created records to their profile to reference later as well.
 
       ### Tech
 
-      PhoneProPlus is a web application written in PHP using the [Laravel](https://laravel.com/) framework.
-      Laravel is a popular MVC PHP framework. This application is written in version 8 of the framework.
+      PhoneProPlus is a web application written using the [Laravel](https://laravel.com/) framework.
+      Laravel is the most popular MVC PHP framework. This application is written in version 8 of the framework.
       It users Laravel Blade, Bootstrap and Javascript on the front end.
       PHP on the backend and MYSQL for the database.
 

@@ -7,6 +7,10 @@
     @foreach ($errors->all() as $error)
       @if(!$loop->first)
         <br>
+      @else
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
       @endif
       {{ $error }}
     @endforeach
@@ -20,35 +24,35 @@
       <form method="POST" action="{{ route('record.store') }}">
         @csrf
         <div class="mb-2">
-          <label class="form-label">Building Name</label>
+          <label class="form-label">Building Name<i style="color: red">*</i></label>
           <input class="form-control" type="text" name="building_name" placeholder="My Building"></input>
         </div>
         <div class="mb-2">
-          <label class="form-label">Address</label>
+          <label class="form-label">Address<i style="color: red">*</i></label>
           <input class="form-control" type="text" name="address" placeholder="1170 White Horse Rd."></input>
         </div>
         <div class="row mb-2">
           <div class="col-6">
-            <label class="form-label">City</label>
-            <input class="form-control" type="text" name="city" placeholder="Vorhees">
+            <label class="form-label">City<i style="color: red">*</i></label>
+            <input class="form-control" type="text" name="city" placeholder="Voorhees">
            </div>
           <div class="col">
-            <label class="form-label">State</label>
+            <label class="form-label">State<i style="color: red">*</i></label>
             @include('includes.states')
           </div>
           <div class="col">
-            <label class="form-label">Zipcode</label>
+            <label class="form-label">Zipcode<i style="color: red">*</i></label>
             <input class="form-control" type="text" name="zipcode" placeholder="08043">
           </div>
         </div>
         <div class="mb-2">
-          <label class="form-label">Phone Number</label>
+          <label class="form-label">Phone Number<i style="color: red">*</i></label>
           <input class="form-control" type="text" name="phone_number" placeholder="(888) 555-9999"></input>
         </div>
         <hr />
         <div class="row">
           <div class="col">
-            <label class="form-label">Building Type</label>
+            <label class="form-label">Building Type<i style="color: red">*</i></label>
             <div class="col-7 mb-2">
               @inject('buildingTypes', 'App\Models\BuildingType')
               <div class="form-check form-check-inline">
@@ -63,7 +67,7 @@
             <span class="text-muted font-italic">What type of building is this record?</span>
           </div>
           <div class="col">
-            <label class="form-label">Visibility Type</label>
+            <label class="form-label">Visibility Type<i style="color: red">*</i></label>
             <div class="col-7 mb-2">
               @inject('visibilityTypes', 'App\Models\VisibilityType')
               <div class="form-check form-check-inline">
@@ -81,7 +85,8 @@
         <hr />
         <div class="form-group">
           <label for="notes">Notes</label>
-          <textarea class="form-control" maxlength="256" oninput="displayCharsLeft(this, 256)" name="notes" rows="5" placeholder="Notes"></textarea>
+          <textarea class="form-control" maxlength="256" oninput="displayCharsLeft(this, 256)" name="notes" rows="5"
+            placeholder="Appartment Number: 5"></textarea>
           <div class="d-inline mb-2" id="charsLeft"></div>
         </div>
         <hr />
