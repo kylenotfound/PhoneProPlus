@@ -55,9 +55,11 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <div class="p-2">
-                      <a href="login/google" class="btn btn-lg btn-primary" style="background-color: #dd4b39;" type="submit"><i class="devicon-google-plain"></i> Login with Google</a>
-                    </div>
+                    @if (env('APP_ENV') != 'prod')
+                      <div class="p-2">
+                        <a href="login/google" class="btn btn-lg btn-primary" style="background-color: #dd4b39;" type="submit"><i class="devicon-google-plain"></i> Login with Google</a>
+                      </div>
+                    @endif
                     <div class="p-2">
                       <button class="btn btn-lg btn-primary" style="background-color: #569fca;" type="submit">Sign in</button>
                     </div>
