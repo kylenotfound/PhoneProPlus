@@ -13,11 +13,14 @@ use App\Rules\PhoneNumber;
 class RecordController extends Controller {
 
   public function index(Record $record) {
-    return view('records.index', ['record' => $record]);
+    return view('records.index', [
+      'record' => $record,
+      'buildingTypes' => BuildingType::all()
+    ]);
   }
 
   public function create() {
-    return view('records.create');
+    return view('records.create', ['buildingTypes' => BuildingType::all()]);
   }
 
   public function store(CreateRecordRequest $request) {
@@ -83,7 +86,7 @@ class RecordController extends Controller {
 
     foreach($records as $record) {
       $record->delete();
-    }  
+    }
 
     return redirect()->route('home')->with(['success' => 'All of your PUBLIC records have been deleted!']);
   }
@@ -95,11 +98,11 @@ class RecordController extends Controller {
 
     if (count($records) === 0) {
       return back()->withErrors(['errorss' => 'No Records!']);
-    }  
-    
+    }
+
     foreach($records as $record) {
       $record->delete();
-    }  
+    }
 
     return redirect()->route('home')->with(['success' => 'All of your PRIVATE records have been deleted!']);
   }

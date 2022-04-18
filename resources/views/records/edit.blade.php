@@ -37,18 +37,10 @@
               <input class="form-control" type="text" name="phone_number" placeholder="{{ $record->getPhoneNumber() }}">
             </div>
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <label class="form-label">Building Type</label>
-                <div class="col-7 mb-2">
-                  @inject('buildingTypes', 'App\Models\BuildingType')
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="building_type_id" value="{{ $buildingTypes::RESIDANCE }}">
-                    <label class="form-check-label" for="buildingType">Residance</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="building_type_id" value="{{ $buildingTypes::COMAPNY }}">
-                    <label class="form-check-label" for="buildingType">Company</label>
-                  </div>
+                <div class=" mb-2">
+                  @include('includes.building_types')
                 </div>
               </div>
               <div class="col">

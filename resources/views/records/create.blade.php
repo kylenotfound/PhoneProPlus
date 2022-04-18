@@ -51,34 +51,25 @@
         </div>
         <hr />
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <label class="form-label">Building Type<i style="color: red">*</i></label>
-            <div class="col-7 mb-2">
-              @inject('buildingTypes', 'App\Models\BuildingType')
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="building_type_id" value="{{ $buildingTypes::RESIDANCE }}">
-                <label class="form-check-label" for="buildingType">Residance</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="building_type_id" value="{{ $buildingTypes::COMAPNY }}">
-                <label class="form-check-label" for="buildingType">Company</label>
-              </div>
+            <div class="mb-2">
+              @include('includes.building_types')
             </div>
             <span class="text-muted font-italic">What type of building is this record?</span>
           </div>
-          <div class="col">
-            <label class="form-label">Visibility Type<i style="color: red">*</i></label>
-            <div class="col-7 mb-2">
-              @inject('visibilityTypes', 'App\Models\VisibilityType')
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="is_private" value="{{ $visibilityTypes::PUBLIC_RECORD }}">
-                <label class="form-check-label" for="visibilityType">Public</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="is_private" value="{{ $visibilityTypes::PRIVATE_RECORD }}">
-                <label class="form-check-label" for="visibilityType">Private</label>
-              </div>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Visibility Type<i style="color: red">*</i></label><br />
+            @inject('visibilityTypes', 'App\Models\VisibilityType')
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="is_private" value="{{ $visibilityTypes::PUBLIC_RECORD }}">
+              <label class="form-check-label" for="visibilityType">Public</label>
             </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="is_private" value="{{ $visibilityTypes::PRIVATE_RECORD }}">
+              <label class="form-check-label" for="visibilityType">Private</label>
+            </div>
+            <br />
             <span class="text-muted font-italic">Is the record public? Or, private for you only?</span>
           </div>
         </div>

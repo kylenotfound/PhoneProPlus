@@ -13,10 +13,12 @@ $("body").on('show.bs.collapse', function(e) {
   if(e.target.id == "recordsCollapse") {
     document.getElementById("recordsButton").innerHTML = ("Collapse Records");
   }
+  $('#page-btns').show();
 });
 
 $("body").on('hide.bs.collapse', function(e) {
     if(e.target.id == "recordsCollapse") {
       document.getElementById("recordsButton").innerHTML = ("Expand Records");
     }
+    $('#page-btns').hide();
 });
