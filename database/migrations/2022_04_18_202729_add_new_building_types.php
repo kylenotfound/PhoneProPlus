@@ -18,6 +18,8 @@ class AddNewBuildingTypes extends Migration {
         BuildingType::updateOrCreate(['id' => BuildingType::GAS_STATION], ['name' => 'Gas Station']);
         BuildingType::updateOrCreate(['id' => BuildingType::FEDERAL_ESTABLISHMENT], ['name' => 'Government Building']);
         BuildingType::updateOrCreate(['id' => BuildingType::MILITARY], ['name' => 'Military']);
+        BuildingType::updateOrCreate(['id' => BuildingType::AMUSEMENT_PARK], ['name' => 'Amusement Park']);
+        BuildingType::updateOrCreate(['id' => BuildingType::OTHER], ['name' => 'Other']);
     }
 
     public function down() {
@@ -33,5 +35,7 @@ class AddNewBuildingTypes extends Migration {
         BuildingType::where('id', BuildingType::GAS_STATION)->delete();
         BuildingType::where('id', BuildingType::FEDERAL_ESTABLISHMENT)->delete();
         BuildingType::where('id', BuildingType::MILITARY)->delete();
+        BuildingType::where('id', BuildingType::AMUSEMENT_PARK)->delete();
+        BuildingType::where('id', BuildingType::OTHER)->delete();
     }
 }

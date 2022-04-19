@@ -77,7 +77,7 @@
         <div class="form-group">
           <label for="notes">Notes</label>
           <textarea class="form-control" maxlength="256" oninput="displayCharsLeft(this, 256)" name="notes" rows="5"
-            placeholder="Appartment Number: 5"></textarea>
+            placeholder="Apartment Number: 5"></textarea>
           <div class="d-inline mb-2" id="charsLeft"></div>
         </div>
         <hr />

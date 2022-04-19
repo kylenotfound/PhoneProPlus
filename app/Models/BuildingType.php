@@ -21,6 +21,8 @@ class BuildingType extends Model {
   const GAS_STATION = 12;
   const FEDERAL_ESTABLISHMENT = 13;
   const MILITARY = 14;
+  const AMUSEMENT_PARK = 15;
+  const OTHER = 16;
 
   protected $table = 'building_types';
   protected $fillable = ['name'];
