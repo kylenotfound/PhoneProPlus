@@ -13,6 +13,11 @@ use App\Rules\PhoneNumber;
 class RecordController extends Controller {
 
   public function index(Record $record) {
+
+    if ($record->is_private && auth()->id() != $record->user->getId()) {
+        return redirect()->route('welcome')->withErrors(['errors' => "You are not allowed to view this!"]);
+    }
+
     return view('records.index', [
       'record' => $record,
       'buildingTypes' => BuildingType::all()
