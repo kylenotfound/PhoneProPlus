@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BuildingType extends Model {
 
   const RESIDANCE = 1;
-  const COMAPNY = 2;
+  const COMPANY = 2;
   const SCHOOL = 3;
   const RESTAURANT = 4;
   const STORE = 5;

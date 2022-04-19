@@ -9,7 +9,7 @@ class RecordSeeder extends Seeder {
 
     public function run() {
       if (env('APP_ENV') != 'prod') {
-        Record::factory()->count(100)->create();
+        //Record::factory()->count(100)->create();
       }
     }
 }

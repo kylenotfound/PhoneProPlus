@@ -8,7 +8,7 @@ use App\Models\VisibilityType;
 class VisibilityTypeSeeder extends Seeder {
 
     public function run() {
-      VisibilityType::updateOrCreate(['id' => 1], ['name' => 'Public']);
-      VisibilityType::updateOrCreate(['id' => 2], ['name' => 'Private']);
+      VisibilityType::updateOrCreate(['name' => 'Public']);
+      VisibilityType::updateOrCreate(['name' => 'Private']);
     }
 }

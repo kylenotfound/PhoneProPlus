@@ -7,15 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class VisibilityType extends Model {
 
-  const PUBLIC_RECORD = 1;
-  const PRIVATE_RECORD = 2;
+  const PUBLIC_RECORD = 'Public';
+  const PRIVATE_RECORD = 'Private';
 
   public $table = 'record_visibility_types';
   protected $fillable = ['name'];
-
-  public function getId() {
-    return $this->id;
-  }
 
   public function getName() {
     return $this->name;

@@ -8,8 +8,7 @@ class CreateRecordVisibilityTypesTable extends Migration {
 
     public function up() {
         Schema::create('record_visibility_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->string('name')->primary();
             $table->timestamps();
         });
     }

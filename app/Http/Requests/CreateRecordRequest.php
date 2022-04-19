@@ -21,7 +21,7 @@ class CreateRecordRequest extends FormRequest {
         'zipcode' => 'required|string|max:5|min:5',
         'phone_number' => new PhoneNumber(),
         'building_type_id' => 'required',
-        'is_private' => 'required',
+        'is_private' => 'required|string',
         'notes' => 'nullable|max:256',
       ];
     }

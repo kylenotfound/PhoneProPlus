@@ -26,7 +26,7 @@ class Record extends Model {
     }
 
     public function visibilityType() {
-      return $this->hasOne(VisibilityType::class, 'id', 'is_private');
+      return $this->hasOne(VisibilityType::class, 'name', 'is_private');
     }
 
     public function getId() {
@@ -66,7 +66,7 @@ class Record extends Model {
     }
 
     public function isPrivate() {
-      return $this->visibilityType->getId();
+      return $this->visibilityType->getName();
     }
 
     public function getVisibilityTypeName() {
@@ -93,10 +93,10 @@ class Record extends Model {
     public function isSaved() : bool {
       $save = Save::where('record_id', $this->getId())
         ->where('user_id', auth()->id())->exists();
-      
+
       if ($save == null) {
         return false;
-      } 
+      }
 
       return true;
     }

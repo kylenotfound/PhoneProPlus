@@ -14,7 +14,7 @@ class RecordController extends Controller {
 
   public function index(Record $record) {
 
-    if ($record->is_private && auth()->id() != $record->user->getId()) {
+    if ($record->isPrivate() == VisibilityType::PRIVATE_RECORD && auth()->id() != $record->user->getId()) {
         return redirect()->route('welcome')->withErrors(['errors' => "You are not allowed to view this!"]);
     }
 
